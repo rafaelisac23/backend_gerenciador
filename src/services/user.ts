@@ -1,0 +1,55 @@
+import { prisma } from "../libs/prisma";
+import { AppError } from "../errors/appError";
+import bcrypt from "bcryptjs";
+
+type CreateNewUserProps = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export const getUserById = async (id: number) => {
+  return await prisma.user.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      email: true,
+    },
+  });
+};
+
+export const createNewUser = async (data: CreateNewUserProps) => {
+  const email = data.email.toLowerCase();
+
+  const user = await prisma.user.findUnique({ where: { email } });
+
+  if (user) {
+    throw new AppError("Email já cadastrado", 409);
+  }
+
+  const newPassword = await bcrypt.hashSync(data.password, 10);
+
+  return await prisma.user.create({
+    data: { name: data.name, email, password: newPassword },
+  });
+};
+
+type VerifyUserProps = {
+  email: string;
+  password: string;
+};
+
+export const verifyUser = async (data: VerifyUserProps) => {
+  const user = await prisma.user.findUnique({ where: { email: data.email } });
+
+  if (!user) {
+    throw new AppError("Acesso Negado", 404);
+  }
+
+  //Verifica se a senha do usuario bate com descriptografia
+  if (!bcrypt.compareSync(data.password, user.password)) {
+    throw new AppError("Acesso Negado", 404);
+  }
+
+  return user;
+};

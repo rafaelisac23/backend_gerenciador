@@ -1,0 +1,100 @@
+💡 Ideia do Projeto: API de Gerenciamento de Tarefas (Task Manager API)
+
+Um sistema onde usuários podem se cadastrar, logar e gerenciar suas tarefas pessoais.
+
+⚙️ Funcionalidades Principais
+
+Autenticação
+
+Cadastro de usuário (/auth/register)
+
+Login (/auth/login) com JWT
+
+Middleware de proteção para rotas privadas
+
+Gestão de Usuários
+
+Obter perfil (/users/me)
+
+Atualizar senha
+
+Deletar conta
+
+Gestão de Tarefas (CRUD protegido por login)
+
+Criar tarefa (/tasks)
+
+Listar todas as tarefas do usuário (/tasks)
+
+Atualizar tarefa (/tasks/:id)
+
+Marcar como concluída
+
+Deletar tarefa (/tasks/:id)
+
+Filtros e Paginação
+
+Buscar tarefas por status (pendente/concluída)
+
+Paginação (?page=1&limit=10)
+
+🛠️ Tecnologias que você pode usar
+
+Node.js + Express → para criar a API
+
+MongoDB (com Mongoose) ou PostgreSQL/MySQL (com Prisma ou Sequelize)
+
+JWT (Json Web Token) → autenticação
+
+bcrypt → criptografar senhas
+
+dotenv → variáveis de ambiente
+
+Zod ou Joi → validação de dados
+
+📂 Estrutura de pastas (exemplo)
+project-task-manager/
+│── src/
+│   ├── controllers/
+│   │   ├── auth.controller.js
+│   │   ├── user.controller.js
+│   │   └── task.controller.js
+│   ├── middlewares/
+│   │   └── auth.middleware.js
+│   ├── models/
+│   │   ├── user.model.js
+│   │   └── task.model.js
+│   ├── routes/
+│   │   ├── auth.routes.js
+│   │   ├── user.routes.js
+│   │   └── task.routes.js
+│   ├── utils/
+│   │   └── generateToken.js
+│   ├── server.js
+│   └── app.js
+│── .env
+│── package.json
+
+🔥 Possíveis melhorias (se quiser deixar o projeto mais robusto)
+
+Implementar refresh token e logout
+
+Adicionar roles (ex: admin, user)
+
+Criar documentação com Swagger ou Postman
+
+Testes unitários com Jest
+
+Deploy no Render / Railway / Vercel
+
+👉 Esse projeto vai mostrar no seu portfólio que você sabe:
+
+Criar APIs RESTful
+
+Trabalhar com autenticação JWT
+
+Criar middlewares
+
+Fazer CRUD real
+
+Organizar estrutura de projeto
