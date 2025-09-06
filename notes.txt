@@ -21,7 +21,7 @@ Obter perfil (/users/me) - ok
 
 Gestão de Tarefas (CRUD protegido por login)
 
-Criar tarefa (/tasks)
+Criar tarefa (/tasks) - ok - 06/09
 
 Listar todas as tarefas do usuário (/tasks)
 

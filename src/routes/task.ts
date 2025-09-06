@@ -4,4 +4,5 @@ import * as taskController from "../controllers/task";
 
 export const taskRouter = Router();
 
-taskRouter.post("/task", privateRoute, taskController.CreateTask);
+taskRouter.post("/tasks", privateRoute, taskController.getAllTasks);
+taskRouter.post("/", privateRoute, taskController.addTask);
