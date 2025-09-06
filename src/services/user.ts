@@ -1,6 +1,11 @@
 import { prisma } from "../libs/prisma";
 import { AppError } from "../errors/appError";
 import bcrypt from "bcryptjs";
+import {
+  alterInformationUserSchemaType,
+  alterPasswordUserSchemaType,
+} from "../types/user";
+import { ExtendedRequest } from "../types/extended-request";
 
 type CreateNewUserProps = {
   name: string;
@@ -52,4 +57,30 @@ export const verifyUser = async (data: VerifyUserProps) => {
   }
 
   return user;
+};
+
+//Rotas Privadas para user
+
+export const updateUser = async (
+  data: alterInformationUserSchemaType,
+  req: ExtendedRequest
+) => {
+  return await prisma.user.update({
+    where: { id: req.user?.id },
+    data,
+    select: { id: true, name: true, email: true, updatedAt: true },
+  });
+};
+
+export const updatePassword = async (
+  data: alterPasswordUserSchemaType,
+  req: ExtendedRequest
+) => {
+  const newPassword = await bcrypt.hashSync(data.password as string, 10);
+
+  return await prisma.user.update({
+    where: { id: req.user?.id },
+    data: { password: newPassword },
+    select: { id: true, name: true, email: true, updatedAt: true },
+  });
 };

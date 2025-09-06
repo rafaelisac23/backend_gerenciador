@@ -15,13 +15,16 @@ export const ErrorHandlerRequest: ErrorRequestHandler = (
   next
 ) => {
   if (err instanceof ZodError) {
-    res.json({ error: err.issues });
-    return;
+    const formattedErrors = err.issues.map((issue) => ({
+      field: issue.path.join("."),
+      message: issue.message,
+    }));
+    return res.status(400).json({ errors: formattedErrors });
   }
 
   if (err instanceof AppError) {
     return res.status(err.status).json({ message: err.message });
   }
 
-  res.status(500).json({ error: "Server is a shit" });
+  res.status(500).json({ error: "Server have a problem" });
 };

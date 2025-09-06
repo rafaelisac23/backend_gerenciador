@@ -4,21 +4,20 @@ Um sistema onde usuários podem se cadastrar, logar e gerenciar suas tarefas pes
 
 ⚙️ Funcionalidades Principais
 
-Autenticação
+Autenticação - ok
 
-Cadastro de usuário (/auth/register)
+Cadastro de usuário (/auth/signin) - ok
 
-Login (/auth/login) com JWT
+Login (/auth/signup) com JWT - ok 
 
-Middleware de proteção para rotas privadas
+Middleware de proteção para rotas privadas -ok 
 
-Gestão de Usuários
+Obter perfil (/users/me) - ok
 
-Obter perfil (/users/me)
-
-Atualizar senha
-
-Deletar conta
+* Gestão de Usuários
+- Atualizar - ok - 06/09
+- Deletar - ok - 06/09
+- Atualizar senha - ok  06/09
 
 Gestão de Tarefas (CRUD protegido por login)
 
@@ -38,19 +37,7 @@ Buscar tarefas por status (pendente/concluída)
 
 Paginação (?page=1&limit=10)
 
-🛠️ Tecnologias que você pode usar
-
-Node.js + Express → para criar a API
-
-MongoDB (com Mongoose) ou PostgreSQL/MySQL (com Prisma ou Sequelize)
-
-JWT (Json Web Token) → autenticação
-
-bcrypt → criptografar senhas
-
-dotenv → variáveis de ambiente
-
-Zod ou Joi → validação de dados
+- Exemplo so pra seguir
 
 📂 Estrutura de pastas (exemplo)
 project-task-manager/
@@ -75,6 +62,8 @@ project-task-manager/
 │── .env
 │── package.json
 
+
+
 🔥 Possíveis melhorias (se quiser deixar o projeto mais robusto)
 
 Implementar refresh token e logout
@@ -87,14 +76,3 @@ Testes unitários com Jest
 
 Deploy no Render / Railway / Vercel
 
-👉 Esse projeto vai mostrar no seu portfólio que você sabe:
-
-Criar APIs RESTful
-
-Trabalhar com autenticação JWT
-
-Criar middlewares
-
-Fazer CRUD real
-
-Organizar estrutura de projeto

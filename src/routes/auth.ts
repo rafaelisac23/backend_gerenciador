@@ -2,8 +2,8 @@ import { Router } from "express";
 import * as AuthController from "../controllers/auth";
 import { privateRoute } from "../middlewares/auth";
 
-export const AuthRouter = Router();
+export const authRouter = Router();
 
-AuthRouter.post("/signin", AuthController.signin);
-AuthRouter.post("/signup", AuthController.signUp);
-AuthRouter.post("/validate", privateRoute, AuthController.validate);
+authRouter.post("/signin", AuthController.signin);
+authRouter.post("/signup", AuthController.signUp);
+authRouter.post("/validate", privateRoute, AuthController.validate);
