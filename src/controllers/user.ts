@@ -21,9 +21,6 @@ export const alterInformationUser = async (
     //atualiz o usuario
     const updatedUser = await updateUser(data, req);
 
-    if (!updatedUser)
-      throw new AppError("Não foi possivel atualizar o usuario", 400);
-
     res.status(200).json({ stats: "success", user: updatedUser });
   } catch (err) {
     next(err);
@@ -41,9 +38,6 @@ export const alterPasswordUser = async (
     const data = alterPasswordUserSchema.parse(req.body);
 
     const updatedPassword = await updatePassword(data, req);
-
-    if (!updatedPassword)
-      throw new AppError("Não foi possivel atualizar a senha", 400);
 
     res.json({ success: "ok", alter: updatedPassword });
     return;

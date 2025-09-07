@@ -23,19 +23,19 @@ Gestão de Tarefas (CRUD protegido por login)
 
 Criar tarefa (/tasks) - ok - 06/09
 
-Listar todas as tarefas do usuário (/tasks)
+Listar todas as tarefas do usuário (/tasks) - ok  - 07/09
 
-Atualizar tarefa (/tasks/:id)
+Atualizar tarefa (/tasks/:id) - -ok - 07/09
 
-Marcar como concluída
+Marcar como concluída - ok - 07/09
 
-Deletar tarefa (/tasks/:id)
+Deletar tarefa (/tasks/:id) - ok - 07/09
 
-Filtros e Paginação
+Filtros e Paginação 
 
 Buscar tarefas por status (pendente/concluída)
 
-Paginação (?page=1&limit=10)
+Paginação (?page=1&limit=10) - ok - 07/09
 
 - Exemplo so pra seguir
 
