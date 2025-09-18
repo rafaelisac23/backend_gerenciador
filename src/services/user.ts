@@ -19,6 +19,7 @@ export const getUserById = async (id: number) => {
     select: {
       id: true,
       email: true,
+      name: true,
     },
   });
 };

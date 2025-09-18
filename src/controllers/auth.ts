@@ -1,6 +1,6 @@
 import { RequestHandler, Response } from "express";
-import z from "zod";
-import { createNewUser, verifyUser } from "../services/user";
+import z, { email } from "zod";
+import { createNewUser, getUserById, verifyUser } from "../services/user";
 import { createToken } from "../services/auth";
 import { ExtendedRequest } from "../types/extended-request";
 
@@ -57,6 +57,8 @@ export const signUp: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const validate = (req: ExtendedRequest, res: Response) => {
-  res.json({ user: req.user });
+export const validate = async (req: ExtendedRequest, res: Response) => {
+  const user = await getUserById(req.user?.id as number);
+
+  res.json({ id: user?.id, email: user?.email, name: user?.name });
 };
