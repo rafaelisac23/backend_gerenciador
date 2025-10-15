@@ -9,9 +9,7 @@ export const privateRoute = async (
 ) => {
   try {
     const user = await verifyRequest(req);
-
     req.user = user;
-
     next();
   } catch (err) {
     next(err);

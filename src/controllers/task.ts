@@ -6,6 +6,9 @@ import { getUserById } from "../services/user";
 import {
   createTask,
   delTask,
+  getCountConcludeTask,
+  getCountNotConcludeTask,
+  getCountTask,
   getTaskById,
   getTasks,
   taskStatus,
@@ -122,6 +125,60 @@ export const deleteTask = async (
     const deletedTask = await delTask(taskId);
 
     res.status(200).json({ task: deletedTask });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const countAllTasks = async (
+  req: ExtendedRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    if (!req.user) throw new AppError("Não autorizado", 401);
+
+    const user = getUserById(req.user.id);
+
+    const getcountAllTask = await getCountTask(req.user.id);
+
+    res.status(200).json({ success: true, count: getcountAllTask });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const countConcludeTasks = async (
+  req: ExtendedRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    if (!req.user) throw new AppError("Não autorizado", 401);
+
+    const user = getUserById(req.user.id);
+
+    const getcountConcludeTask = await getCountConcludeTask(req.user.id);
+
+    res.status(200).json({ success: true, count: getcountConcludeTask });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const countNotConcludeTasks = async (
+  req: ExtendedRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    if (!req.user) throw new AppError("Não autorizado", 401);
+
+    const user = getUserById(req.user.id);
+
+    const getcountConcludeTask = await getCountNotConcludeTask(req.user.id);
+
+    res.status(200).json({ success: true, count: getcountConcludeTask });
   } catch (err) {
     next(err);
   }

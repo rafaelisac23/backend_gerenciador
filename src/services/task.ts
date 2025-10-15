@@ -13,6 +13,24 @@ export const getTasks = async (page: number, id: number) => {
   });
 };
 
+export const getCountTask = async (id: number) => {
+  return await prisma.task.count({
+    where: { userId: id },
+  });
+};
+
+export const getCountConcludeTask = async (id: number) => {
+  return await prisma.task.count({
+    where: { userId: id, completed: true },
+  });
+};
+
+export const getCountNotConcludeTask = async (id: number) => {
+  return await prisma.task.count({
+    where: { userId: id, completed: false },
+  });
+};
+
 export const getTaskById = async (id: number) => {
   return await prisma.task.findUnique({ where: { id } });
 };

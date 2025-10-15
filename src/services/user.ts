@@ -49,12 +49,12 @@ export const verifyUser = async (data: VerifyUserProps) => {
   const user = await prisma.user.findUnique({ where: { email: data.email } });
 
   if (!user) {
-    throw new AppError("Acesso Negado", 404);
+    throw new AppError("Acesso Negado", 401);
   }
 
   //Verifica se a senha do usuario bate com descriptografia
   if (!bcrypt.compareSync(data.password, user.password)) {
-    throw new AppError("Acesso Negado", 404);
+    throw new AppError("Acesso Negado", 401);
   }
 
   return user;
