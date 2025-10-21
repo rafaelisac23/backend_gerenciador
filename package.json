@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "postinstall": "prisma generate",
     "postbuild": "npx prisma generate",
     "build": "npx tsc",
     "start": "node dist/server.js"
