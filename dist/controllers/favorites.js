@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addFavorites = exports.getCountFavorites = exports.getAllFavorites = void 0;
+exports.isFavorite = exports.DeleteFavorite = exports.addFavorites = exports.getCountFavorites = exports.getAllFavorites = void 0;
 const appError_1 = require("../errors/appError");
 const favorites_1 = require("../services/favorites");
 const favortite_1 = require("../types/favortite");
@@ -41,3 +41,42 @@ const addFavorites = async (req, res, next) => {
     }
 };
 exports.addFavorites = addFavorites;
+const DeleteFavorite = async (req, res, next) => {
+    try {
+        if (!req.user?.id)
+            throw new appError_1.AppError("Não autorizado", 401);
+        const body = favortite_1.RemoveFavoriteSchema.parse(req.body);
+        //Busca qual o id do favorito usando a taskid
+        const isFavorite = await (0, favorites_1.CheckFavorite)(body.taskId);
+        console.log("task solicitada: ", isFavorite);
+        if (!isFavorite)
+            res.status(404).json({
+                success: false,
+                message: "Não e possivel deletar, não é um favorito",
+            });
+        //deleta pelo id do favorito buscada
+        const deletedFavorite = await (0, favorites_1.deleteFavorite)(isFavorite?.id);
+        console.log("TaskDeletada: ", deletedFavorite);
+        res.json({ success: true, deletedFavorite });
+    }
+    catch (err) {
+        next(err);
+    }
+};
+exports.DeleteFavorite = DeleteFavorite;
+const isFavorite = async (req, res, next) => {
+    try {
+        if (!req.user?.id)
+            throw new appError_1.AppError("Não autorizado", 401);
+        const query = favortite_1.IsFavoriteSchema.parse(req.query);
+        const favorite = await (0, favorites_1.CheckFavorite)(query.taskId);
+        if (!favorite) {
+            res.json({ Favorite: false });
+        }
+        res.status(200).json({ favorite: true });
+    }
+    catch (err) {
+        next(err);
+    }
+};
+exports.isFavorite = isFavorite;

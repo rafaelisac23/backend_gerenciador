@@ -5,6 +5,7 @@ const appError_1 = require("../errors/appError");
 const task_1 = require("../types/task");
 const user_1 = require("../services/user");
 const task_2 = require("../services/task");
+const favorites_1 = require("../services/favorites");
 const getAllTasks = async (req, res, next) => {
     try {
         if (!req.user)
@@ -84,6 +85,15 @@ const deleteTask = async (req, res, next) => {
             throw new appError_1.AppError("Não autorizado", 401);
         const { id } = req.params;
         const taskId = parseInt(id);
+        if (isNaN(taskId))
+            throw new appError_1.AppError("ID invalido", 400);
+        //Primeiro verifica se a task e um favorito
+        const isFavorite = await (0, favorites_1.CheckFavorite)(taskId);
+        if (isFavorite) {
+            //Se for favorito
+            //Deleta Primeiro a task da tabela de favoritos
+            const deletedFavorite = await (0, favorites_1.deleteFavorite)(isFavorite?.id);
+        }
         const task = await (0, task_2.getTaskById)(taskId);
         if (!task)
             throw new appError_1.AppError("Task não encontrada", 404);

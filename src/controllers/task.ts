@@ -14,6 +14,7 @@ import {
   taskStatus,
   updateTask,
 } from "../services/task";
+import { CheckFavorite, deleteFavorite } from "../services/favorites";
 
 export const getAllTasks = async (
   req: ExtendedRequest,
@@ -118,6 +119,17 @@ export const deleteTask = async (
     if (!req.user) throw new AppError("Não autorizado", 401);
     const { id } = req.params;
     const taskId = parseInt(id as string);
+
+    if (isNaN(taskId)) throw new AppError("ID invalido", 400);
+
+    //Primeiro verifica se a task e um favorito
+    const isFavorite = await CheckFavorite(taskId);
+
+    if (isFavorite) {
+      //Se for favorito
+      //Deleta Primeiro a task da tabela de favoritos
+      const deletedFavorite = await deleteFavorite(isFavorite?.id as number);
+    }
 
     const task = await getTaskById(taskId);
     if (!task) throw new AppError("Task não encontrada", 404);

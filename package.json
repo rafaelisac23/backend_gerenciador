@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "npx tsc",
+    "postbuild": "npx prisma generate",
     "start": "node dist/server.js"
   },
   "devDependencies": {

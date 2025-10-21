@@ -10,4 +10,6 @@ favoriteRouter.get(
   privateRoute,
   FavoriteController.getCountFavorites
 );
+favoriteRouter.get("/isFavorite/", privateRoute, FavoriteController.isFavorite);
 favoriteRouter.post("/", privateRoute, FavoriteController.addFavorites);
+favoriteRouter.delete("/", privateRoute, FavoriteController.DeleteFavorite);

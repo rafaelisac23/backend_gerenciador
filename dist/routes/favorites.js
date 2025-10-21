@@ -40,4 +40,6 @@ const FavoriteController = __importStar(require("../controllers/favorites"));
 exports.favoriteRouter = (0, express_1.Router)();
 exports.favoriteRouter.get("/", auth_1.privateRoute, FavoriteController.getAllFavorites);
 exports.favoriteRouter.get("/countFavorites", auth_1.privateRoute, FavoriteController.getCountFavorites);
+exports.favoriteRouter.get("/isFavorite/", auth_1.privateRoute, FavoriteController.isFavorite);
 exports.favoriteRouter.post("/", auth_1.privateRoute, FavoriteController.addFavorites);
+exports.favoriteRouter.delete("/", auth_1.privateRoute, FavoriteController.DeleteFavorite);
