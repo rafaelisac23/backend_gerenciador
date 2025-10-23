@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { authRouter } from "./auth";
+import { authRouter } from "../routes/auth";
 import { userRouter } from "../routes/user";
 import { taskRouter } from "./task";
 import { favoriteRouter } from "./favorites";

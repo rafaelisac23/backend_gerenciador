@@ -1,4 +1,3 @@
-import { AppError } from "../errors/appError";
 import { prisma } from "../libs/prisma";
 
 export const getFavorites = async (id: number) => {

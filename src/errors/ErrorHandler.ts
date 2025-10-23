@@ -1,7 +1,7 @@
 import { ErrorRequestHandler, RequestHandler } from "express";
 import { ZodError } from "zod";
 import { AppError } from "./appError";
-import { Prisma } from "../generated/prisma";
+import { Prisma } from "@prisma/client";
 
 //ROta não encontrada
 export const RouteError: RequestHandler = (req, res) => {

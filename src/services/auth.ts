@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { User } from "../generated/prisma";
+import { User } from "@prisma/client";
 import { createJWT, readJWT } from "../libs/jwt";
 import { AppError } from "../errors/appError";
 import { TokenPayload } from "../types/token-payload";

@@ -1,5 +1,5 @@
 import { RequestHandler, Response } from "express";
-import z, { email } from "zod";
+import z from "zod";
 import { createNewUser, getUserById, verifyUser } from "../services/user";
 import { createToken } from "../services/auth";
 import { ExtendedRequest } from "../types/extended-request";

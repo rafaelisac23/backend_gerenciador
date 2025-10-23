@@ -15,6 +15,8 @@ server.use("/api", mainRoute);
 server.use(RouteError);
 server.use(ErrorHandlerRequest);
 
-server.listen(process.env.PORT, () => {
+const PORT = Number(process.env.PORT) || 3000;
+
+server.listen(PORT, "0.0.0.0", () => {
   console.log(`Projeto Rodando na porta http://localhost:${process.env.PORT}`);
 });

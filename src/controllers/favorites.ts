@@ -13,7 +13,6 @@ import {
   IsFavoriteSchema,
   RemoveFavoriteSchema,
 } from "../types/favortite";
-import { success } from "zod";
 
 export const getAllFavorites = async (
   req: ExtendedRequest,
